@@ -1,8 +1,42 @@
 public class ThreadTest implements Runnable{
-    public void sort(int[] a){
-        int temp = a[0];
-        a[0] = a[7];
-        a[7] = temp;
+
+    //global instance variables
+    private int[] OriginalArray = new int[8];
+    private int[] aux = new int[8];
+    private int hi;
+    private int lo;
+    private int mid;
+
+    public int getHi() {
+        return hi;
+    }
+
+    public void setHi(int hi) {
+        this.hi = hi;
+    }
+
+    public int getLo() {
+        return lo;
+    }
+
+    public void setLo(int lo) {
+        this.lo = lo;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = lo + (hi - lo) / 2;
+    }
+
+    public void Sort(int[] a){
+
+        for(int i = 0; i<a.length; i++){
+            OriginalArray[i]=a[i];
+        }
+        Sort(OriginalArray, aux, 0, OriginalArray.length - 1);
     }
 
     public void Sort(int[] a, int[] aux, int lo, int hi)
@@ -48,6 +82,25 @@ public class ThreadTest implements Runnable{
     @Override
     public void run()
     {
-        System.out.println("4");
+        ThreadTest t1 = new ThreadTest();
+        t1.setMid(t1.getLo() + (t1.getHi() - t1.getLo()) / 2);
+        //t1.setHi();
+
+
+
+        if(hi <= lo) return;
+        mid = lo + (hi - lo) / 2;
+        Sort(OriginalArray, aux, lo, mid);
+        Sort(OriginalArray, aux, mid + 1, hi);
+        merge(OriginalArray, aux, lo, mid, hi);
+        complete(aux, OriginalArray);
+
+
+
     }
+
+
+
+
+
 }
