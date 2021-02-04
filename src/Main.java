@@ -4,32 +4,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Thread t = new Thread(new ThreadTest()); //single thread declaration
-        Thread[] Threads = new Thread[10]; //array of threads
-        for(int i = 0; i<= Threads.length-1; i++)//filling threads
-        {
-            Threads[i] = new Thread(new ThreadTest());
-        }
 
-        int[] InputValues = new int[8];
+        int[] InputValues = InputReader(); //read input from files and assign to array
 
-        try{
-            File file = new File("Input.txt");
-            Scanner scan = new Scanner(file);
-            for(int i = 0; i < 8; i++){
-                InputValues[i] = scan.nextInt();
-            }
+        ThreadTest merge = new ThreadTest();
+        Thread t = new Thread(merge); //single thread declaration
 
-
-        } catch(IOException e) {
-            System.out.println("An error occurred");
-            e.printStackTrace();
-        }
-
-
-        ThreadTest test = new ThreadTest();
-        test.sort(InputValues);
-        t.start();
+        merge.Sort(InputValues); //create au array
+        t.start(); //start thread
 
         try{
             t.join();
@@ -37,21 +19,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        for(int i = 0; i < 8; i++){
-                    System.out.println(InputValues[i]);
 
-                }
+       OutputToFile();//writes output to output.txt
 
-      try{
-          FileWriter MyWriter = new FileWriter("Output.txt");
-          MyWriter.write("Tell me this worked");
-          MyWriter.close();
-          System.out.println("Wrote to the file");
-      } catch (IOException e)
-        {
-            System.out.println("It fucking didn't work :(");
-            e.printStackTrace();
-        }
+
         //3304  8221  26849 14038  1509 6367 7856 21362
         //3304  8221  26849 14038 | 1509 6367 7856 21362
         //3304  8221 | 26849 14038 | 1509 6367 7856 21362
@@ -67,5 +38,43 @@ public class Main {
         //3304  8221  26849 14038  1509 6367 7856 21362
 
 
+    }
+
+
+
+    public static int[] InputReader()
+    {
+        int[] InputValues = new int[8];
+        try{ //read inputs and assign to array
+            File file = new File("Input.txt"); //define new file
+            Scanner scan = new Scanner(file); //scan file
+            for(int i = 0; i < InputValues.length; i++){ //read through each line of file
+                InputValues[i] = scan.nextInt();
+            }
+
+
+        } catch(IOException e) {
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+        return InputValues;
+    }
+
+    public static void OutputToFile(/*int[] arr*/)
+    {
+        try{ //write to output file
+            FileWriter MyWriter = new FileWriter("Output.txt");
+            MyWriter.write("something");
+            /*for (int i = 0 ; i <= arr.length-1; i++)
+            {
+                MyWriter.write(arr[i]);
+            }*/
+            MyWriter.close();
+            System.out.println("Wrote to the file");
+        } catch (IOException e)
+        {
+            System.out.println("Error");
+            e.printStackTrace();
+        }
     }
 }
