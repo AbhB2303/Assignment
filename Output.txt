@@ -1,0 +1,36 @@
+New thread started: Thread-1
+New thread started: Thread-2
+New thread started: Thread-3
+New thread started: Thread-4
+New thread started: Thread-5
+Finish Thread: Thread-2
+New thread started: Thread-6
+Finish Thread: Thread-4
+Finish Thread: Thread-5
+Finish Thread: Thread-6
+Finish Thread: Thread-1
+New thread started: Thread-0
+Finish Thread: Thread-3
+New thread started: Thread-8
+New thread started: Thread-7
+New thread started: Thread-9
+New thread started: Thread-10
+New thread started: Thread-11
+Finish Thread: Thread-0
+New thread started: Thread-12
+New thread started: Thread-13
+Finish Thread: Thread-9
+Finish Thread: Thread-11
+Finish Thread: Thread-12
+Finish Thread: Thread-13
+Finish Thread: Thread-8
+Finish Thread: Thread-10
+Finish Thread: Thread-7
+1509
+3304
+6367
+7856
+8221
+14038
+21362
+26849
