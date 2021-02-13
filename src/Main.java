@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         int[] InputValues = InputReader(); //read input from files and assign to array
 
